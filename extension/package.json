@@ -1,0 +1,14 @@
+{
+  "name": "postframe-chrome-extension",
+  "version": "1.0.0",
+  "description": "PostFrame Chrome Extension for Facebook HD Post generation",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "typescript": "~5.8.2"
+  }
+}

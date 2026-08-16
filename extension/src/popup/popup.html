@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostFrame</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo">P</div>
+        <div>
+          <h1>POSTFRAME</h1>
+          <p class="tagline">Turn any Facebook post into an HD image</p>
+        </div>
+      </div>
+      <span class="badge" id="versionBadge">v1.0</span>
+    </header>
+
+    <!-- Dynamic Status Banner -->
+    <div id="statusBanner" class="status-banner state-initial">
+      <div class="status-dot"></div>
+      <span id="statusText">Checking active tab...</span>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="mainContent" class="main-content">
+      <!-- 1. NOT FACEBOOK STATE -->
+      <div id="viewNotFacebook" class="view hidden">
+        <div class="empty-state">
+          <div class="icon-circle">🌐</div>
+          <h3>Open a Facebook post first</h3>
+          <p>Navigate to any Facebook post or feed in Chrome, then open PostFrame to capture it.</p>
+          <a href="https://www.facebook.com" target="_blank" class="btn btn-secondary">Open Facebook</a>
+        </div>
+      </div>
+
+      <!-- 2. DETECTING / LOADING STATE -->
+      <div id="viewDetecting" class="view hidden">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p id="loadingMsg">Inspecting visible page...</p>
+        </div>
+      </div>
+
+      <!-- 3. MULTIPLE POSTS DISAMBIGUATION -->
+      <div id="viewMultiple" class="view hidden">
+        <div class="multi-header">
+          <h3>Multiple posts detected</h3>
+          <p>Select which post you'd like to capture:</p>
+        </div>
+        <div id="multiPostsList" class="multi-list"></div>
+      </div>
+
+      <!-- 4. POST PREVIEW CARD (DETECTED / READY) -->
+      <div id="viewDetected" class="view hidden">
+        <div class="post-card">
+          <!-- Author Header -->
+          <div class="card-header">
+            <img id="postAvatar" class="avatar" src="" alt="Avatar" />
+            <div class="author-meta">
+              <div class="author-row">
+                <span id="postAuthor" class="author-name">Author</span>
+                <span id="postVerified" class="verified-badge hidden">✓</span>
+              </div>
+              <span id="postDate" class="post-date">Recently</span>
+            </div>
+            <div id="confidenceBadge" class="confidence-pill" title="Extraction Confidence">
+              95% Match
+            </div>
+          </div>
+
+          <!-- Post Text -->
+          <div id="postText" class="post-text"></div>
+
+          <!-- Post Media Preview -->
+          <div id="mediaPreview" class="media-preview hidden">
+            <img id="postImage" src="" alt="Attached post media" />
+            <span id="imageCountBadge" class="image-count hidden">+2</span>
+          </div>
+
+          <!-- Engagement Stats -->
+          <div class="engagement-row">
+            <div class="metric">
+              <span class="metric-icon">👍</span>
+              <span id="metricReactions">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric-icon">💬</span>
+              <span id="metricComments">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric-icon">↗️</span>
+              <span id="metricShares">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Web App Config -->
+        <div class="target-app-row">
+          <label for="webAppUrlInput">PostFrame App URL:</label>
+          <input type="text" id="webAppUrlInput" value="http://localhost:3000" />
+        </div>
+      </div>
+
+      <!-- 5. ERROR STATE -->
+      <div id="viewError" class="view hidden">
+        <div class="empty-state error">
+          <div class="icon-circle error-circle">⚠️</div>
+          <h3 id="errorTitle">Unable to detect post</h3>
+          <p id="errorDescription">Make sure you are viewing a specific Facebook post.</p>
+          <button id="btnRetry" class="btn btn-secondary">Retry Detection</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Actions -->
+    <footer class="footer">
+      <button id="btnCapture" class="btn btn-primary hidden">
+        <span>Capture Post</span>
+      </button>
+      <button id="btnOpenPostFrame" class="btn btn-success hidden">
+        <span>Open in PostFrame HD 🚀</span>
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "PostFrame",
+  "description": "Convert Facebook posts into high-resolution, shareable HD social media cards via Chrome Extension capture, DOM parser, and custom studio templates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
